@@ -9,15 +9,17 @@
                 <div class="columns is-centered">
                     <div class="column is-6">
                         <h1>Registro</h1>
-                        <% errors.forEach(error => { %>
+                        <% if(locals.errors) {
+                            errors.forEach(error => { %>
                             <p class="feedback is-danger"><%= error.msg %> </p>
-                        <%  }) %> 
+                        <%  }) 
+                        }%> 
                         <form action="/users" method="POST">
 
                             <div class="field">
                                 <label for="first_name">Nombre</label>
                                 <div class="control">
-                                    <input type="text" name="first_name" id="first_name">
+                                    <input type="text" name="first_name" id="first_name" value="<%= locals.oldData && oldData.first_name? oldData.first_name: ''%>">
                                 </div>
                                 <p class="feedback"></p>
                             </div>
@@ -25,7 +27,7 @@
                             <div class="field">
                                 <label for="last_name">Apellido</label>
                                 <div class="control">
-                                    <input type="text" name="last_name" id="last_name">
+                                    <input type="text" name="last_name" id="last_name" value="<%= locals.oldData && oldData.last_name? oldData.last_name: ''%>">
                                 </div>
                                 <p class="feedback"></p>
                             </div>
@@ -33,7 +35,7 @@
                             <div class="field">
                                 <label for="email">Email</label>
                                 <div class="control">
-                                    <input type="text" name="email" id="email">
+                                    <input type="text" name="email" id="email" value="<%= locals.oldData && oldData.email? oldData.email: ''%>">
                                 </div>
                                 <p class="feedback"></p>
                             </div>

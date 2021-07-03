@@ -11,8 +11,8 @@ module.exports = {
         res.render('users/index',  { users });
     },
     create: (req, res) => {
-        let errors = validationResult(req);
-        res.render('users/create', {errors: errors.array()});
+        
+        res.render('users/create');
     },
     store: (req, res) => {
         const errors = validationResult(req);
@@ -23,7 +23,11 @@ module.exports = {
 
             res.redirect('/users/' + userId);
         } else {
-            res.render('users/create', {errors: errors.array()});
+            res.render('users/create', {
+                errors: errors.array(),
+                oldData: req.body
+            },
+            );
         }
     },
     show: (req, res) => {

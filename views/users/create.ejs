@@ -9,6 +9,9 @@
                 <div class="columns is-centered">
                     <div class="column is-6">
                         <h1>Registro</h1>
+                        <% errors.forEach(error => { %>
+                            <p class="feedback is-danger"><%= error.msg %> </p>
+                        <%  }) %> 
                         <form action="/users" method="POST">
 
                             <div class="field">

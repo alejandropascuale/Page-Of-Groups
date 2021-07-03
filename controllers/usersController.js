@@ -1,3 +1,4 @@
+const { validationResult } = require ('express-validator');
 const jsonTable = require('../database/jsonTable');
 
 const usersModel = jsonTable('users');
@@ -10,14 +11,20 @@ module.exports = {
         res.render('users/index',  { users });
     },
     create: (req, res) => {
-        res.render('users/create');
+        let errors = validationResult(req);
+        res.render('users/create', {errors: errors.array()});
     },
     store: (req, res) => {
-        let user = req.body;
+        const errors = validationResult(req);
+        if (errors.isEmpty()) {
+            let user = req.body;
 
-        userId = usersModel.create(user);
+            userId = usersModel.create(user);
 
-        res.redirect('/users/' + userId);
+            res.redirect('/users/' + userId);
+        } else {
+            res.render('users/create', {errors: errors.array()});
+        }
     },
     show: (req, res) => {
         let user = usersModel.find(req.params.id);

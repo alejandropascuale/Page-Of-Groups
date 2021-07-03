@@ -53,8 +53,8 @@
                                 <div class="control">
                                     <select name="category" id="category">
                                         <option value="">Seleccione una opción</option>
-                                        <option value="vendedor">Vendedor</option>
-                                        <option value="comprador">Comprador</option>
+                                        <option value="vendedor" <%= locals.oldData && oldData.category === 'vendedor'? 'selected': ''%> >Vendedor</option>
+                                        <option value="comprador" <%= locals.oldData && oldData.category === 'comprador'? 'selected': ''%>>Comprador</option>
                                     </select>
                                 </div>
                                 <p class="feedback"></p>
